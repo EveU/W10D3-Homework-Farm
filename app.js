@@ -70,7 +70,18 @@ app.get('/:id/edit', function(req, res){
     if(err) console.log(err);
     res.render('edit', {animal: animal});
   });
-})
+});
+
+// UPDATE
+app.post('/:id', function(req, res){
+  req.body.vetReport = { health: req.body.health, outlook: req.body.outlook };
+  Animal.findByIdAndUpdate(req.body._id, req.body, function(err, animal){
+    if(err) console.log(err);
+    res.redirect('/');
+  });
+});
+
+
 
 
 app.listen(3000, function(){
