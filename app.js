@@ -28,6 +28,7 @@ app.use(expressLayouts);
 app.use(express.static(__dirname + '/public'));
 
 // ############ YOU CAN ADD YOUR ROUTES BELOW HERE
+// INDEX
 app.get('/', function(req, res){
   Animal.find(function(err, animals){
     if(err) console.log(err);
@@ -35,6 +36,25 @@ app.get('/', function(req, res){
   });
 });
 
+// CREATE
+app.post('/', function(req, res){
+  var newAnimal = new Animal(req.body);
+  newAnimal.vetReport = {health: req.body.health, outlook: req.body.outlook};
+
+  newAnimal.save(function(err, animal){
+    if(err) console.log(err);
+    console.log('New animal created');
+
+    Farm.findById(req.body.farm_id, function(err, farm){
+      if(err) console.log(err);
+      farm.addAnimal(animal);
+      farm.save(function(err){
+        if(err) console.log(err);
+        res.redirect('/');
+      });
+    });
+  });
+});
 
 app.listen(3000, function(){
   console.log("Welcome to the Farm Manager");
