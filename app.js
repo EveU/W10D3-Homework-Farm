@@ -81,6 +81,14 @@ app.post('/:id', function(req, res){
   });
 });
 
+// DELETE
+app.post('/:id/delete', function(req, res){
+  Animal.findByIdAndRemove(req.params.id, function(err){
+    if(err) console.log(err);
+    console.log('Animal deleted!');
+    res.redirect('/');
+  });
+});
 
 
 
