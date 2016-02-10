@@ -66,7 +66,7 @@ app.get('/:id', function(req, res){
 
 // EDIT
 app.get('/:id/edit', function(req, res){
-  Animal.findOne(req.params.id, function(err, animal){
+  Animal.findById(req.params.id, function(err, animal){
     if(err) console.log(err);
     res.render('edit', {animal: animal});
   });
