@@ -4,6 +4,12 @@ var bodyParser     = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 var app            = express();
 
+var Animal = require('./models/animal');
+var Farm = require('./models/farm');
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/farm-manager');
+
 //App settings
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

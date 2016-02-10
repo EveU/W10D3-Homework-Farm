@@ -9,6 +9,10 @@ var animalSchema = new mongoose.Schema({
   vetReport: vetReportSchema
 });
 
+animalSchema.methods.speak = function(){
+  return this.noise;
+}
+
 var Animal = mongoose.model('Animal', animalSchema);
 
 module.exports = Animal;
