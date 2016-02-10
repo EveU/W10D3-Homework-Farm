@@ -56,6 +56,14 @@ app.post('/', function(req, res){
   });
 });
 
+// SHOW
+app.get('/:id', function(req, res){
+  Animal.findById(req.params.id, function(err, animal){
+    if(err) console.log(err);
+    res.render('show', {animal: animal});
+  });
+});
+
 app.listen(3000, function(){
   console.log("Welcome to the Farm Manager");
 });
