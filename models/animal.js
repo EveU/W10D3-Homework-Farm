@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var vetReportSchema = new mongoose.Schema({ health: 'number', outlook: 'string' });
+var vetReportSchema = new mongoose.Schema({ health: Number, outlook: String });
 
 var animalSchema = new mongoose.Schema({
   name: String,
